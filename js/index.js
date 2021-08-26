@@ -4,19 +4,26 @@ window.onload = () => {
   };
 
   function startGame() {
-    let canvas = document.getElementById("canvas");
-    canvas.style.backgroundImage = "url('/images/road.png')";
+    drawRoad();
+    drawCar();
+  }
+
+  function drawRoad() {
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.style.backgroundImage = "url('./images/road.png')";
     canvas.style.backgroundRepeat = "no-repeat";
     canvas.style.backgroundSize = "cover";
+  }
+  function drawCar() {
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
 
-    let imgTag = document.createElement("img");
-    console.log(imgTag);
-    imgTag.setAttribute("src", "./images/car.png");
-    imgTag.setAttribute("alt", "car image");
-    imgTag.setAttribute("height", "200px");
-    imgTag.setAttribute("width", "100px");
-
-    let parent = document.getElementById("game-board");
-    parent.appendChild(imgTag);
+    const car = new Image();
+    car.src = "./images/car.png";
+    car.onload = function () {
+      ctx.drawImage(car, 215, 560, 70, 140);
+    };
   }
 };
